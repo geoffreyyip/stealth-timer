@@ -1,0 +1,46 @@
+body{
+  background-color: #2E2E2E;
+  color: #E6E6E6;
+  font-family: 'Josefin Slab';
+  text-align: center;
+}
+
+.toggle{
+	margin: 25px;
+}
+
+button {
+	border: solid 2px #E6E6E6;
+	border-radius: 5px;
+  	background: none;
+}
+
+.clock{
+	border-radius: 50%;
+	border: solid 2px #E6E6E6;
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+/* ugh. centering div elements vertically is a pain */
+div#duration-entry{
+	position: relative;
+	margin: 45% auto;
+}
+
+.clock input{
+	font-size: 20px;
+	width: 60px;
+	text-align: center;
+	background: none;
+	border: red;
+}
+
+.controls{
+  	margin: 25px;
+}
+
+.controls button{
+	width: 100px;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lan="en">
+	<title> Geoff's Personal Timer </title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- boilerplate to import jQuery + BootStrap -->
+	<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+    <script language="Javascript" type="text/javascript" src="my-javascript.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="my-stylesheet.css">
+</html>
+
+<body>
+	<div class="container-fluid">
+		<h1 id="myHeader">Standard Timer</h1>
+
+		<button class="toggle" id="toWorkout" style="display:inline">Workout Timer</button>
+		<button class="toggle" id="toRegular" style="display:none">Regular Timer</button>
+
+		<div class="clock" style="position: relative; box-sizing: border-box;">
+				
+
+
+			<div id="duration-entry">
+				<input id="hours-work" maxlength="2" placeholder="00" pattern="\d*">
+				<separator>:</separator>
+				<input id="minutes-work" maxlength="2" placeholder="00" pattern="\d*">
+				<separator>:</separator>
+				<input id="seconds-work" maxlength="2" placeholder="00" pattern="\d*">
+			</div>
+
+			<div id="break-entry" style="display:none">
+				<input id="hours-break" maxlength="2" placeholder="00" pattern="\d*">
+				<separator>:</separator>
+				<input id="minutes-break" maxlength="2" placeholder="00" pattern="\d*">
+				<separator>:</separator>
+				<input id="seconds-break" maxlength="2" placeholder="00" pattern="\d*">
+			</div>
+
+			<div id="repetitions" style="display:none">
+				<input id="repetitions-entry" maxlength="2" placeholder="00" pattern="\d*">
+			</div>	
+
+			<div id="countdown-display">
+				<span id="hours">00</span>
+				<separator>:</separator>
+				<span id="minutes">00</span>
+				<separator>:</separator>
+				<span id="seconds">00</span>
+			</div>
+
+
+		</div>
+
+		<canvas id="alpha" style="position: absolute; z-index: 1"  width="500" height="500"></canvas>	
+
+		<div class="controls row-center">
+			<button type="button" id="play">Play</button>
+			<button type="button" id="pause">Pause</button>
+			<button type="button" id="hide" style="display:inline;">Hide</button>
+			<button type="button" id="show" style="display:none;">Show</button>
+			<button type="button" id="stop">Stop</button>
+		</div>
+
+	</div>
+	
+	<audio id="ping-alarm">
+		<source src="assets/notification.mp3" type="audio/mpeg"/>
+    	<source src="assets/notification.ogg" type="audio/ogg"/>
+    </audio>
+
+    <audio id="loop-alarm">
+    	<source src="assets/marimba.mp3" type="audio/mpeg"/>
+    </audio>
+
+</body>
