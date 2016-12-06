@@ -5,7 +5,7 @@
 // allow me to draw a partial circle animation
 // on top of regular canvas. Otherwise, I'd have to sync up CSS styling and
 // canvas rules. which is ugh.
-import $ from 'jquery';
+
 
 const MINUTES_PER_HOUR = 60;
 const SECONDS_PER_MINUTE = 60;
