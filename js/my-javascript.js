@@ -29,26 +29,6 @@ function toMilliseconds(hours, minutes, seconds) {
     return totalSeconds * MILLISECONDS_PER_SECOND;
 }
 
-class CircleAnimation {
-    constructor() {
-        // for sandboxing
-        let canvas = document.querySelector('canvas');
-
-        // set it to be over clock element
-        let clockRect = document.querySelector('.clock').getBoundingClientRect();
-        canvas.style.position = 'absolute';
-        canvas.style.left = clockRect.x + 'px';
-        canvas.style.top = clockRect.y + 'px';
-
-        let cx = canvas.getContext('2d');
-        // arc(x, y, radius, startAngle, endAngle)
-        cx.arc(250, 250, 250, 0, 2 * Math.PI);
-        cx.lineWidth = 3;
-        cx.stroke();
-    }
-}
-
-
 function playNotification() {
     document.getElementById('loop-alarm').play();
 }
@@ -225,9 +205,23 @@ function displayTime() {
     $('#seconds').text(padWithZeros(seconds, 2));   
 }
 
+// animation is analogous to a second hand going round a clock
+function displayAnimation() {
+    const cx = canvas.getContext('2d');
+    const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % 
+        SECONDS_PER_MINUTE;
+
+    // arc(x, y, radius, startAngle, endAngle)
+    cx.arc(250, 250, 250, 0, 
+        2 * Math.PI * seconds / SECONDS_PER_MINUTE);
+    cx.lineWidth = 3;
+    cx.strokeStyle = red;
+    cx.stroke();
+}
+
 // $(document).ready(function() {
 $(document).ready(() => {
-    // debugging purposes
+    // set up canvas animation
     const canvas = document.querySelector('canvas');
 
     // set it to be over clock element
