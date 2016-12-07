@@ -24,8 +24,8 @@
 
 		<div class="clock" style="width: 500px; margin: 0 auto">
 
-			<div id="scrap" style="text-align: left">
-				<canvas width="500" height="500"></canvas>
+			<div id="circle-border" style="text-align: left">
+				<canvas id="circle-background" width="500" height="500"></canvas>
 				<script>
 					let cx = document.querySelector("canvas").getContext("2d");
 
@@ -34,7 +34,9 @@
 					cx.arc(250, 250, 250, 0, 7);
 					cx.stroke();
 				</script>
-			</div>	
+
+				<canvas id="circle-overlay" width="500" height="500"></canvas>			
+			</div>
 
 			<div id="duration-entry">
 				<input id="hours-work" maxlength="2" placeholder="00" pattern="\d*">
