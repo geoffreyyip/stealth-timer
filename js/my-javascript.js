@@ -113,7 +113,7 @@ class CountdownTimer {
         this.timeLeft -= elapsed;
 
         // terminate when time runs out
-        if (this.timeLeft <= 0) {
+        if (this.timeLeft < 0) {
             this.stop();
             this.onTimeUp();
         }
@@ -278,8 +278,6 @@ $(document).ready(() => {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
-
-        const display = currDisplay || new TimeDisplay(timer);
     });
 
     $('#pause').on('click', () => {
