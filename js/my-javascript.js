@@ -206,24 +206,26 @@ function displayTime() {
 }
 
 // animation is analogous to a second hand going round a clock
-function displayAnimation(canvas, timeLeft) {
+function displayAnimation(canvas) {
     if (!currTimer) return;
 
+    let timeLeft = currTimer.getTimeLeft();
+    const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % SECONDS_PER_MINUTE;
+ 
     const cx = canvas.getContext('2d');
-    const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % 
-        SECONDS_PER_MINUTE;
-
     // arc(x, y, radius, startAngle, endAngle)
+    cx.beginPath();
     cx.arc(250, 250, 250, 0, 
         2 * Math.PI * seconds / SECONDS_PER_MINUTE);
-    cx.lineWidth = 3;
-    cx.strokeStyle = red;
+    cx.lineWidth = 6;
     cx.stroke();
 }
 
 // $(document).ready(function() {
 $(document).ready(() => {
     setInterval(displayTime, TENTH_OF_A_SECOND);
+    const canvasElement = document.querySelector('#circle-overlay');
+    setInterval(canvasElement => displayAnimation, TENTH_OF_A_SECOND);
 
     // status indicator: blue color means this file compiled.
     $('body').css({ 'background-color': 'blue' });
