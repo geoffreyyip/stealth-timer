@@ -2,7 +2,10 @@
 
 ## FEATURES
 
+CircleAnimation to track seconds countdown
 Multifunctional play-pause-stop glyphs on timer
+Multifunctional time entry + display button
+Multistate display of Stealth: On and Stealth: Off button, sets display of time to none or visible
 Reset button visible on paused timer
 Stealth Mode enabled by default (hide timer)
 Attention Grabs to CountdownTimer Entry
