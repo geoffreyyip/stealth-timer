@@ -1,0 +1,11 @@
+## HOTFIXES
+
+## FEATURES
+
+Multifunctional play-pause-stop glyphs on timer
+Reset button visible on paused timer
+Stealth Mode enabled by default (hide timer)
+Attention Grabs to CountdownTimer Entry
+Better UI: Interval Timer
+Better UX: More Padding
+Keyboard Shorcuts
