@@ -206,7 +206,9 @@ function displayTime() {
 }
 
 // animation is analogous to a second hand going round a clock
-function displayAnimation() {
+function displayAnimation(canvas, timeLeft) {
+    if (!currTimer) return;
+
     const cx = canvas.getContext('2d');
     const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % 
         SECONDS_PER_MINUTE;
@@ -221,21 +223,6 @@ function displayAnimation() {
 
 // $(document).ready(function() {
 $(document).ready(() => {
-    // set up canvas animation
-    const canvas = document.querySelector('canvas');
-
-    // set it to be over clock element
-    const clockRect = document.querySelector('.clock').getBoundingClientRect();
-    canvas.style.position = 'absolute';
-    canvas.style.left = `${clockRect.x} px`;
-    canvas.style.top = `${clockRect.y} px`;
-
-    const cx = canvas.getContext('2d');
-    // arc(x, y, radius, startAngle, endAngle)
-    cx.arc(250, 250, 250, 0, 2 * Math.PI);
-    cx.lineWidth = 3;
-    cx.stroke();
-
     setInterval(displayTime, TENTH_OF_A_SECOND);
 
     // status indicator: blue color means this file compiled.
