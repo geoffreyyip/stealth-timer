@@ -16,17 +16,9 @@ button {
 }
 
 .clock{
-	border-radius: 50%;
-	border: solid 2px #E6E6E6;
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
-}
-
-/* ugh. centering div elements vertically is a pain */
-div#duration-entry{
-	position: relative;
-	margin: 45% auto;
 }
 
 .clock input{

@@ -29,13 +29,8 @@ function toMilliseconds(hours, minutes, seconds) {
     return totalSeconds * MILLISECONDS_PER_SECOND;
 }
 
-/*
-Work in Progress
-
 class CircleAnimation {
     constructor() {
-        console.log('constructor is running');
-
         // for sandboxing
         let canvas = document.querySelector('canvas');
 
@@ -52,7 +47,7 @@ class CircleAnimation {
         cx.stroke();
     }
 }
-*/
+
 
 function playNotification() {
     document.getElementById('loop-alarm').play();
