@@ -29,31 +29,6 @@ function toMilliseconds(hours, minutes, seconds) {
     return totalSeconds * MILLISECONDS_PER_SECOND;
 }
 
-/*
-Work in Progress
-
-class CircleAnimation {
-    constructor() {
-        console.log('constructor is running');
-
-        // for sandboxing
-        let canvas = document.querySelector('canvas');
-
-        // set it to be over clock element
-        let clockRect = document.querySelector('.clock').getBoundingClientRect();
-        canvas.style.position = 'absolute';
-        canvas.style.left = clockRect.x + 'px';
-        canvas.style.top = clockRect.y + 'px';
-
-        let cx = canvas.getContext('2d');
-        // arc(x, y, radius, startAngle, endAngle)
-        cx.arc(250, 250, 250, 0, 2 * Math.PI);
-        cx.lineWidth = 3;
-        cx.stroke();
-    }
-}
-*/
-
 function playNotification() {
     document.getElementById('loop-alarm').play();
 }
@@ -118,7 +93,7 @@ class CountdownTimer {
         this.timeLeft -= elapsed;
 
         // terminate when time runs out
-        if (this.timeLeft <= 0) {
+        if (this.timeLeft < 0) {
             this.stop();
             this.onTimeUp();
         }
@@ -230,24 +205,26 @@ function displayTime() {
     $('#seconds').text(padWithZeros(seconds, 2));   
 }
 
+// animation is analogous to a second hand going round a clock
+function displayAnimation(canvas) {
+    if (!currTimer) return;
+
+    let timeLeft = currTimer.getTimeLeft();
+    const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % SECONDS_PER_MINUTE;
+ 
+    const cx = canvas.getContext('2d');
+    cx.clearRect(0, 0, 500, 500);
+    cx.beginPath();
+    cx.arc(250, 250, 250, 0, 2 * Math.PI * seconds / SECONDS_PER_MINUTE);
+    cx.lineWidth = 6;
+    cx.stroke();
+}
+
 // $(document).ready(function() {
 $(document).ready(() => {
-    // debugging purposes
-    const canvas = document.querySelector('canvas');
-
-    // set it to be over clock element
-    const clockRect = document.querySelector('.clock').getBoundingClientRect();
-    canvas.style.position = 'absolute';
-    canvas.style.left = `${clockRect.x} px`;
-    canvas.style.top = `${clockRect.y} px`;
-
-    const cx = canvas.getContext('2d');
-    // arc(x, y, radius, startAngle, endAngle)
-    cx.arc(250, 250, 250, 0, 2 * Math.PI);
-    cx.lineWidth = 3;
-    cx.stroke();
-
     setInterval(displayTime, TENTH_OF_A_SECOND);
+    const overlay = document.querySelector('#circle-overlay');
+    setInterval(displayAnimation, TENTH_OF_A_SECOND, overlay);
 
     // status indicator: blue color means this file compiled.
     $('body').css({ 'background-color': 'blue' });
@@ -283,8 +260,6 @@ $(document).ready(() => {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
-
-        const display = currDisplay || new TimeDisplay(timer);
     });
 
     $('#pause').on('click', () => {
