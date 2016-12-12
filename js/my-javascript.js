@@ -213,10 +213,9 @@ function displayAnimation(canvas) {
     const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % SECONDS_PER_MINUTE;
  
     const cx = canvas.getContext('2d');
-    // arc(x, y, radius, startAngle, endAngle)
+    cx.clearRect(0, 0, 500, 500);
     cx.beginPath();
-    cx.arc(250, 250, 250, 0, 
-        2 * Math.PI * seconds / SECONDS_PER_MINUTE);
+    cx.arc(250, 250, 250, 0, 2 * Math.PI * seconds / SECONDS_PER_MINUTE);
     cx.lineWidth = 6;
     cx.stroke();
 }
@@ -224,8 +223,8 @@ function displayAnimation(canvas) {
 // $(document).ready(function() {
 $(document).ready(() => {
     setInterval(displayTime, TENTH_OF_A_SECOND);
-    const canvasElement = document.querySelector('#circle-overlay');
-    setInterval(canvasElement => displayAnimation, TENTH_OF_A_SECOND);
+    const overlay = document.querySelector('#circle-overlay');
+    setInterval(displayAnimation, TENTH_OF_A_SECOND, overlay);
 
     // status indicator: blue color means this file compiled.
     $('body').css({ 'background-color': 'blue' });

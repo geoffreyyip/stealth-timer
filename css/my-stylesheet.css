@@ -37,10 +37,18 @@ button {
 	width: 100px;
 }
 
-/* text-align set to left to properly align canvas*/
+/* 
+text-align set to left to properly align canvas
+canvas is weird in that it's considered a text element
+
+this makes sense when you're using canvas to draw text
+but it makes no sense when you're using it to draw shapes
+
+css can't distinguish between the two, therefore you must
+use this weird hack to get around it
+*/
 #circle-border {
     text-align: left;
-    position: absolute;
     z-index: -20;
 }
 
