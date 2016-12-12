@@ -36,3 +36,10 @@ button {
 .controls button{
 	width: 100px;
 }
+
+/* text-align set to left to properly align canvas*/
+#circle-border {
+    text-align: left;
+    position: absolute;
+    z-index: -20;
+}
