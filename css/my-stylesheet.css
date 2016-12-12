@@ -43,3 +43,6 @@ button {
     position: absolute;
     z-index: -20;
 }
+
+#circle-backdrop {
+}
