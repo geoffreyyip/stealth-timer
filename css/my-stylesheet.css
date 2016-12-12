@@ -45,4 +45,11 @@ button {
 }
 
 #circle-backdrop {
+    position: absolute;
+    z-index: -10;
+}
+
+#circle-overlay {
+    position: absolute;
+    z-index: -5;
 }
