@@ -307,7 +307,7 @@ $(document).ready(() => {
         if (currTimer) currTimer.pause();
     });
 
-    $('#stop').on('click', () => {
+    $('#reset').on('click', () => {
         // terminates both currTimer and currDisplay
         if (currTimer) terminateCurrTimer();
         if (currDisplay) terminateCurrDisplay();
@@ -318,17 +318,17 @@ $(document).ready(() => {
         $('#seconds').text('00');
     });
 
-    $('#hide').on('click', () => {
+    $('#turn-stealth-on').on('click', () => {
         $('#countdown-display').hide();
 
-        $('#show').show();
-        $('#hide').hide();
+        $('#turn-stealth-off').show();
+        $('#turn-stealth-on').hide();
     });
 
-    $('#show').on('click', () => {
+    $('#turn-stealth-off').on('click', () => {
         $('#countdown-display').show();
 
-        $('#hide').show();
-        $('#show').hide();
+        $('#turn-stealth-on').show();
+        $('#turn-stealth-off').hide();
     });
 });
