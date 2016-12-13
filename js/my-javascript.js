@@ -301,6 +301,9 @@ $(document).ready(() => {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
+
+        $("#countdown-display").show();
+        $("#duration-entry").hide();
     });
 
     $('#pause').on('click', () => {
@@ -316,17 +319,20 @@ $(document).ready(() => {
         $('#hours').text('00');
         $('#minutes').text('00');
         $('#seconds').text('00');
+
+        $("#countdown-display").hide();
+        $("#duration-entry").show();
     });
 
     $('#turn-stealth-on').on('click', () => {
-        $('#countdown-display').hide();
+        $('#countdown-display').css("visibility", "hidden");
 
         $('#turn-stealth-off').show();
         $('#turn-stealth-on').hide();
     });
 
     $('#turn-stealth-off').on('click', () => {
-        $('#countdown-display').show();
+        $('#countdown-display').css("visibility", "visible");
 
         $('#turn-stealth-on').show();
         $('#turn-stealth-off').hide();

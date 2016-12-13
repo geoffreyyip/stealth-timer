@@ -37,6 +37,11 @@ button {
 	border: red;
 }
 
+#countdown-display {
+    display: none;
+    visibility: hidden;
+}
+
 .controls{
   	margin: 25px;
 }
@@ -54,11 +59,11 @@ button {
 }
 
 #turn-stealth-on {
-    display: visible;
+    display: none;
 }
 
 #turn-stealth-off {
-    display: none;
+    display: visible;
 }
 
 /* 
