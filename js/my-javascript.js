@@ -52,28 +52,63 @@ function terminateCurrDisplay() {
     currDisplay = null;
 }
 
+function buildObserver(countdown) {
+    return new Observer(countdown);
+}
+
+class Observer {
+    constructor(countdown) {
+        this.countdown = countdown;
+
+        // represents intervals set by displayTime and displayAnimation
+        this.presenter = null;
+        this.animator = null;
+    }
+
+    clear() {
+        clearInterval(this.presenter);
+        clearInterval(this.animator);
+    }
+
+    run() {
+        this.presenter = setInterval(displayTime, TENTH_OF_A_SECOND, 
+            this.countdown);
+        this.animator = setInterval(displayAnimation, TENTH_OF_A_SECOND, 
+            this.countdown);
+    }
+}
+
 /*
 note constructor does not start timer, you must explictily call the play method
 
 @param Object Duration - object containing hours, minutes and seconds properties
 @param Function whatToDoNext - instructions to execute on hitting zero
+@param Function observer - callback to push info to for display purposes
 */
 class CountdownTimer {
-    constructor(duration, whatToDoNext) {
+    constructor(duration, whatToDoNext, buildObserver) {
         this.duration = toMilliseconds(duration.hours,
             duration.minutes,
             duration.seconds);
         this.timeLeft = this.duration;
 
-        // onTimeUp defaults to playNotification if no whatToDoNext passed
+        // onTimeUp defaults to playNotification
         this.onTimeUp = whatToDoNext || playNotification;
         this.prevTime = Date.now();
+
+        let self = this;
+        this.observer = buildObserver(self);
     }
 
     play() {
+        // countdown behavior
         clearInterval(this.tracker);
         this.prevTime = Date.now();
         this.tracker = setInterval(() => this.countdown(), REFRESH_RATE);
+
+        // restart observer
+        this.observer.clear();
+        this.observer.run();
     }
 
     pause() {
@@ -81,8 +116,12 @@ class CountdownTimer {
     }
 
     stop() {
+        // countdown behavior
         clearInterval(this.tracker);
         this.timeLeft = this.duration;
+
+        // stop observer
+        this.observer.clear();
     }
 
     // call Date.now() to get millseconds elapsed since startpoint
@@ -162,7 +201,7 @@ function startNewTimer(mode) {
         newTimer = new CountdownTimer(timeEntry, () => {
             playNotification();
             terminateCurrTimer();
-        });
+        }, buildObserver);
     } else if (mode === WORKOUT) {
         const timeEntry = {
             hours: parseInt($('#hours-work').val(), 10) || 0,
@@ -183,12 +222,13 @@ function startNewTimer(mode) {
 
 /*
 modifies DOM to reflect time left in current timer
+
+@param Countdown countdown - this observer function pulls info from countdown
 */
-function displayTime() {
-    if (!currTimer) return;
+function displayTime(countdown) {
 
     // add one second buffer for display purposes
-    let timeLeft = currTimer.getTimeLeft();
+    let timeLeft = countdown.getTimeLeft();
     timeLeft += ALMOST_ONE_SECOND;
 
     // convert to hours:minutes:seconds format
@@ -205,14 +245,18 @@ function displayTime() {
     $('#seconds').text(padWithZeros(seconds, 2));   
 }
 
-// animation is analogous to a second hand going round a clock
-function displayAnimation(canvas) {
-    if (!currTimer) return;
+/*
+animation is analogous to a second hand going round a clock
 
-    let timeLeft = currTimer.getTimeLeft();
+@param Countdown countdown - this observer function pulls info from countdown
+*/
+function displayAnimation(countdown) {
+
+    let timeLeft = countdown.getTimeLeft();
     const seconds = (timeLeft / MILLISECONDS_PER_SECOND) % SECONDS_PER_MINUTE;
- 
-    const cx = canvas.getContext('2d');
+
+    // draws partial circle based on seconds left in current minute 
+    const cx = document.querySelector('#circle-overlay').getContext('2d');
     cx.clearRect(0, 0, 500, 500);
     cx.beginPath();
     cx.arc(250, 250, 250, 0, 2 * Math.PI * seconds / SECONDS_PER_MINUTE);
@@ -222,9 +266,6 @@ function displayAnimation(canvas) {
 
 // $(document).ready(function() {
 $(document).ready(() => {
-    setInterval(displayTime, TENTH_OF_A_SECOND);
-    const overlay = document.querySelector('#circle-overlay');
-    setInterval(displayAnimation, TENTH_OF_A_SECOND, overlay);
 
     // status indicator: blue color means this file compiled.
     $('body').css({ 'background-color': 'blue' });
