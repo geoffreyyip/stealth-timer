@@ -9,6 +9,14 @@ body{
 	margin: 25px;
 }
 
+.toggle#toWorkout {
+    display: inline;
+}
+
+.toggle#toRegular {
+    display: none;
+}
+
 button {
 	border: solid 2px #E6E6E6;
 	border-radius: 5px;
@@ -35,6 +43,22 @@ button {
 
 .controls button{
 	width: 100px;
+}
+
+#break-entry {
+    display: none;
+}
+
+#repetitions-entry {
+    display: none;
+}
+
+#turn-stealth-on {
+    display: visible;
+}
+
+#turn-stealth-off {
+    display: none;
 }
 
 /* 

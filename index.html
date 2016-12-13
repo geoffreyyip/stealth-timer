@@ -19,10 +19,10 @@
 	<div class="container-fluid">
 		<h1 id="myHeader">Standard Timer</h1>
 
-		<button class="toggle" id="toWorkout" style="display:inline">Workout Timer</button>
-		<button class="toggle" id="toRegular" style="display:none">Regular Timer</button>
+		<button class="toggle" id="toWorkout">Workout Timer</button>
+		<button class="toggle" id="toRegular">Regular Timer</button>
 
-		<div class="clock" style="width: 500px; margin: 0 auto">
+		<div class="clock">
 
 			<div id="circle-border">
 				<canvas id="circle-backdrop" width="500" height="500"></canvas>
@@ -40,7 +40,7 @@
 				<canvas id="circle-overlay" width="500" height="500"></canvas>			
 			</div>
 
-			<div id="break-entry" style="display:none">
+			<div id="break-entry">
 				<input id="hours-break" maxlength="2" placeholder="00" pattern="\d*">
 				<separator>:</separator>
 				<input id="minutes-break" maxlength="2" placeholder="00" pattern="\d*">
@@ -48,7 +48,7 @@
 				<input id="seconds-break" maxlength="2" placeholder="00" pattern="\d*">
 			</div>
 
-			<div id="repetitions" style="display:none">
+			<div id="repetitions-entry">
 				<input id="repetitions-entry" maxlength="2" placeholder="00" pattern="\d*">
 			</div>	
 
@@ -79,8 +79,8 @@
 	          		<input id="seconds-work" maxlength="2" placeholder="00" pattern="\d*">
 	        	</span>
       		</span>
-			<button type="button" id="turn-stealth-on" style="display:inline">Turn Stealth On</button>
-			<button type="button" id="turn-stealth-off" style="display:none">Turn Stealth Off</button>
+			<button type="button" id="turn-stealth-on">Turn Stealth On</button>
+			<button type="button" id="turn-stealth-off">Turn Stealth Off</button>
 		</div>
 	</div>
 	
