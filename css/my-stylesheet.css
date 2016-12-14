@@ -27,6 +27,7 @@ button {
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
+    position: relative;
 }
 
 #duration-entry input{
@@ -89,4 +90,26 @@ use this weird hack to get around it
 #circle-overlay {
     position: absolute;
     z-index: -5;
+}
+
+/* here's the styling for play-pause-reset buttons */
+
+.fa-play {
+    position: absolute;
+    font-size: 300px;
+    color: green;
+    top: 50%;
+    left: 50%;
+    transform: translate(-35%, -50%);
+    display: visible;
+}
+
+.fa-pause {
+    position: absolute;
+    font-size: 300px;
+    color: green;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
 }
