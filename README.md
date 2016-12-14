@@ -11,8 +11,6 @@ timeDisplay will sometimes show 1 second left when countdown hits zero
 ## FEATURES
 
 * Multifunctional play-pause-stop glyphs on timer
-* Multifunctional time entry + display button
+* make displayCheckmark() and hideCheckmark() html, I can pass it into whatToDoNext() callback of Countdown and flash it on Interval
 * Have reset button visible on paused timer
-* Multistate stealth button (on and off) sets display of time to none or visible
-* Stealth Mode enabled by default (hide timer)
 * Better UI: More Padding
