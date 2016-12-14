@@ -52,6 +52,22 @@ function terminateCurrDisplay() {
     currDisplay = null;
 }
 
+function showCheckmark() {
+    $("#checkmark-control").show();
+}
+
+function hideCheckmark() {
+    $("#checkmark-control").hide();
+}
+
+function hideMediaControls() {
+    $("#media-controls").hide();
+}
+
+function showMediaControls() {
+    $("#media-controls").show();
+}
+
 function buildObserver(countdown) {
     return new Observer(countdown);
 }
@@ -201,6 +217,8 @@ function startNewTimer(mode) {
         newTimer = new CountdownTimer(timeEntry, () => {
             playNotification();
             terminateCurrTimer();
+            showCheckmark();
+            hideMediaControls();
         }, buildObserver);
     } else if (mode === WORKOUT) {
         const timeEntry = {
@@ -291,7 +309,7 @@ $(document).ready(() => {
         $('#break-entry').hide();
     });
 
-    $('.fa-play').on('click', () => {
+    $('#play').on('click', () => {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
@@ -299,15 +317,15 @@ $(document).ready(() => {
         $("#countdown-display").show();
         $("#duration-entry").hide();
 
-        $('.fa-play').hide();
-        $('.fa-pause').show();
+        $('#play').hide();
+        $('#pause').show();
     });
 
-    $('.fa-pause').on('click', () => {
+    $('#pause').on('click', () => {
         if (currTimer) currTimer.pause();
 
-        $('.fa-play').show();
-        $('.fa-pause').hide();
+        $('#play').show();
+        $('#pause').hide();
     });
 
     $('#reset').on('click', () => {
@@ -322,6 +340,27 @@ $(document).ready(() => {
 
         $("#countdown-display").hide();
         $("#duration-entry").show();
+
+        hideCheckmark();
+        showMediaControls();
+    });
+
+    $('#checkmark-control').on('click', () => {
+        if (currTimer) terminateCurrTimer();
+        if (currDisplay) terminateCurrDisplay();
+        document.getElementById('loop-alarm').pause();
+
+        $('#hours').text('00');
+        $('#minutes').text('00');
+        $('#seconds').text('00');
+
+        $("#countdown-display").hide();
+        $("#duration-entry").show();
+
+        hideCheckmark();
+        showMediaControls();
+        $('#play').show();
+        $('#pause').hide();
     });
 
     $('#turn-stealth-on').on('click', () => {
