@@ -291,23 +291,23 @@ $(document).ready(() => {
         $('#break-entry').hide();
     });
 
-    // UI consideration: I can make play button invisible when timer is up
-    // this prevents countdown interval from being reactivated when timer hits zero
-    // this also prevents display of negative times.
-
-    // it may still be useful to defensively set display object to show zero time when
-    // countdown is zero
-    $('#play').on('click', () => {
+    $('.fa-play').on('click', () => {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
 
         $("#countdown-display").show();
         $("#duration-entry").hide();
+
+        $('.fa-play').hide();
+        $('.fa-pause').show();
     });
 
-    $('#pause').on('click', () => {
+    $('.fa-pause').on('click', () => {
         if (currTimer) currTimer.pause();
+
+        $('.fa-play').show();
+        $('.fa-pause').hide();
     });
 
     $('#reset').on('click', () => {
