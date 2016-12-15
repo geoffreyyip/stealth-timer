@@ -1,46 +1,44 @@
 body{
-  background-color: #2E2E2E;
-  color: #E6E6E6;
-  font-family: 'Josefin Slab';
+  background-color: #333333;
+  color: #E6E4E2;
+  font-family: 'Ubuntu';
+  font-size: 2.5em;
+  font-weight: bold;
   text-align: center;
 }
 
-.toggle{
-	margin: 25px;
-}
-
-.toggle#toWorkout {
-    display: inline;
-}
-
-.toggle#toRegular {
-    display: none;
+h1 {
+    font-size: 2.5em;
+    margin-top: 0.5em;
 }
 
 button {
-	border: solid 2px #E6E6E6;
-	border-radius: 5px;
-  	background: none;
+	border: solid 0.1em #E6E6E6;
+	border-radius: 2em;
+  	background: #27463E;
 }
 
 .clock{
-	width: 500px;
-	height: 500px;
+	width: 20em;
+	height: 20em;
 	margin: 0 auto;
+    margin-top: 2.5em;
+    margin-bottom: 2.5em;
     position: relative;
 }
 
 #duration-entry input{
-	font-size: 20px;
-	width: 60px;
+	width: 2em;
 	text-align: center;
-	background: none;
-	border: red;
+    background: #27463E;
+    border: solid 0.1em #47474;
+    border-radius: 2.5em;
 }
 
 #countdown-display {
+    width: 2em;
     display: none;
-    visibility: hidden;
+    text-align: center;
 }
 
 .controls{
@@ -49,6 +47,24 @@ button {
 
 .controls button{
 	width: 100px;
+}
+
+.settings {
+    display: flex;
+    width: 750px;
+    margin: 0 auto;
+}
+
+#reset-cells {
+    flex: 1;
+}
+
+#time-cells {
+    flex: 1;
+}
+
+#stealth-cells {
+    flex: 1;
 }
 
 #break-entry {
@@ -100,8 +116,8 @@ use this weird hack to get around it
 
 .fa-play {
     position: absolute;
-    font-size: 400px;
-    color: green;
+    font-size: 300px;
+    color: #E6E4E2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -110,8 +126,8 @@ use this weird hack to get around it
 
 .fa-pause {
     position: absolute;
-    font-size: 400px;
-    color: green;
+    font-size: 300px;
+    color: #E6E4E2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -125,7 +141,7 @@ use this weird hack to get around it
 .fa-check {
     position: absolute;
     font-size: 400px;
-    color: green;
+    color: #27463E;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

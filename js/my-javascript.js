@@ -280,8 +280,9 @@ function displayAnimation(countdown) {
     const QUARTER_CIRCLE = Math.PI / 2;
     cx.clearRect(0, 0, 500, 500);
     cx.beginPath();
-    cx.arc(250, 250, 240, 0 - QUARTER_CIRCLE, 2 * Math.PI * (seconds / SECONDS_PER_MINUTE) - QUARTER_CIRCLE);
+    cx.arc(250, 250, 240, 0 - QUARTER_CIRCLE, 2 * Math.PI * ((SECONDS_PER_MINUTE - seconds) / SECONDS_PER_MINUTE) - QUARTER_CIRCLE);
     cx.lineWidth = 15;
+    cx.strokeStyle = "#27463E";
     cx.stroke();
 }
 
@@ -291,7 +292,8 @@ $(document).ready(() => {
     // status indicator: blue color means this file compiled.
     // document.querySelector('body').style.backgroundColor = 'blue';
 
-    // toggle mode
+    /*
+    // TO ADD LATER: toggle mode
     document.querySelector('#toWorkout').onclick = function () {
         currMode = WORKOUT;
 
@@ -311,6 +313,8 @@ $(document).ready(() => {
         $('#repetitions').hide();
         $('#break-entry').hide();
     };
+    // TO ADD LATER: toggle mode
+    */
 
     document.querySelector('#play').onclick = function () {
         const timer = currTimer || startNewTimer(currMode);
@@ -323,6 +327,7 @@ $(document).ready(() => {
         $('#play').hide();
         $('#pause').show();
     };
+    
 
     document.querySelector('#pause').onclick = function () {
         if (currTimer) currTimer.pause();
@@ -373,7 +378,7 @@ $(document).ready(() => {
 
     document.querySelector('#turn-stealth-off').onclick = function () {
         $('#countdown-display').css("visibility", "visible");
-
+https://duckduckgo.com/?q=timer&t=canonical&atb=v29-4__&ia=timer
         $('#turn-stealth-on').show();
         $('#turn-stealth-off').hide();
     };

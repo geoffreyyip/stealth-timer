@@ -17,10 +17,12 @@
 
 <body>
 	<div class="container-fluid">
-		<h1 id="myHeader">Standard Timer</h1>
+		<h1 id="myHeader">Ghost Timer</h1>
 
+		<!-- TO ADD LATER: TOGGLE MODES
 		<button class="toggle" id="toWorkout">Workout Timer</button>
 		<button class="toggle" id="toRegular">Regular Timer</button>
+		   TO ADD LATER: TOGGLE MODES-->		
 
 		<div class="clock">
 
@@ -33,7 +35,7 @@
 					cx.beginPath();
 					cx.arc(250, 250, 240, 0, 7);
 					cx.lineWidth = 15;
-					cx.strokeStyle = "grey";
+					cx.strokeStyle = "#E6E4E2";
 					cx.stroke();
 				</script>
 
@@ -64,8 +66,10 @@
 		</div>
 
 		<!-- this is new for addTimeEntryFeat-->
-		<div class="settings">	
-			<button type="button" id="reset">Reset</button>
+		<div class="settings" width="500px">	
+			<span id="reset-cells">
+				<button type="button" id="reset">Reset</button>
+			</span>
       		<span id="time-cells">
 	        	<span id="countdown-display">
 	          		<span id="hours">00</span>
@@ -83,8 +87,10 @@
 	          		<input id="seconds-work" maxlength="2" placeholder="00" pattern="\d*">
 	        	</span>
       		</span>
-			<button type="button" id="turn-stealth-on">Turn Stealth On</button>
-			<button type="button" id="turn-stealth-off">Turn Stealth Off</button>
+      		<span id="stealth-cells">
+				<button type="button" id="turn-stealth-on">Ghost: On</button>
+				<button type="button" id="turn-stealth-off">Ghost: Off</button>
+			</span>
 		</div>
 	</div>
 	
