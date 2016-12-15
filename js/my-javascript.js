@@ -87,7 +87,7 @@ class Observer {
     run() {
         this.presenter = setInterval(displayTime, TENTH_OF_A_SECOND, 
             this.countdown);
-        this.animator = setInterval(displayAnimation, TENTH_OF_A_SECOND, 
+        this.animator = setInterval(displayAnimation, TENTH_OF_A_SECOND / 10, 
             this.countdown);
     }
 }
@@ -277,10 +277,11 @@ function displayAnimation(countdown) {
 
     // draws partial circle based on seconds left in current minute 
     const cx = document.querySelector('#circle-overlay').getContext('2d');
+    const QUARTER_CIRCLE = Math.PI / 2;
     cx.clearRect(0, 0, 500, 500);
     cx.beginPath();
-    cx.arc(250, 250, 250, 0, 2 * Math.PI * seconds / SECONDS_PER_MINUTE);
-    cx.lineWidth = 6;
+    cx.arc(250, 250, 240, 0 - QUARTER_CIRCLE, 2 * Math.PI * (seconds / SECONDS_PER_MINUTE) - QUARTER_CIRCLE);
+    cx.lineWidth = 15;
     cx.stroke();
 }
 
