@@ -260,9 +260,9 @@ function displayTime(countdown) {
         (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR));
 
     // update timer elements
-    document.querySelector('#hours').textContent = padWithZeros(hours, 2);
-    document.querySelector('#minutes').textContent = padWithZeros(minutes, 2);
-    document.querySelector('#seconds').textContent = padWithZeros(seconds, 2);
+    document.querySelector('#hours').placeholder = padWithZeros(hours, 2);
+    document.querySelector('#minutes').placeholder = padWithZeros(minutes, 2);
+    document.querySelector('#seconds').placeholder = padWithZeros(seconds, 2);
 }
 
 /*

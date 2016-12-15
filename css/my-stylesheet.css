@@ -15,7 +15,8 @@ h1 {
 button {
 	border: solid 0.1em #E6E6E6;
 	border-radius: 2em;
-  	background: #27463E;
+  	background: #333333;
+    padding: 0.5em;
 }
 
 .clock{
@@ -27,18 +28,21 @@ button {
     position: relative;
 }
 
-#duration-entry input{
-	width: 2em;
+#time-cells input{
+	width: 2.5em;
 	text-align: center;
-    background: #27463E;
-    border: solid 0.1em #47474;
+    background: #333333;
+    border: solid 0.1em #E6E6E6;
     border-radius: 2.5em;
+    padding: 0.5em;
+}
+
+#time-cells separator {
+    margin: 0.1em;
 }
 
 #countdown-display {
-    width: 2em;
     display: none;
-    text-align: center;
 }
 
 .controls{
