@@ -231,6 +231,7 @@ function startNewTimer(mode) {
             hideMediaControls();
             showCheckmark();
             terminateCurrTimer();
+            notifyMe();
         }, buildObserver);
     } else if (mode === WORKOUT) {
         const repetitions = parseInt(
@@ -284,6 +285,30 @@ function displayAnimation(countdown) {
     cx.lineWidth = 15;
     cx.strokeStyle = "#27463E";
     cx.stroke();
+}
+
+// NOTIFICATION CODE! WOO! 
+/// copied and pasted, some customization is in order
+function notifyMe() {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+    var notification = new Notification('Notification title', {
+      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+      body: "Countdown's Done!",
+    });
+
+    notification.onclick = function () {
+      $('#reset').click();      
+    };
+
+  }
+
 }
 
 // $(document).ready(function() {
@@ -378,8 +403,14 @@ $(document).ready(() => {
 
     document.querySelector('#turn-stealth-off').onclick = function () {
         $('#countdown-display').css("visibility", "visible");
-https://duckduckgo.com/?q=timer&t=canonical&atb=v29-4__&ia=timer
         $('#turn-stealth-on').show();
         $('#turn-stealth-off').hide();
     };
+
+    // DESKTOP NOTIFICATION! WOO!
+    document.addEventListener('DOMContentLoaded', function () {
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+    });
 });
