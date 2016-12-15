@@ -20,7 +20,6 @@ const REGULAR = 1;
 const WORKOUT = 2;
 
 let currTimer = null;
-let currDisplay = null;
 let currMode = REGULAR;
 
 function toMilliseconds(hours, minutes, seconds) {
@@ -31,6 +30,10 @@ function toMilliseconds(hours, minutes, seconds) {
 
 function playNotification() {
     document.getElementById('loop-alarm').play();
+}
+
+function stopNotification() {
+    document.getElementById('loop-alarm').pause();
 }
 
 // question: is this how to set a default parameter?
@@ -45,11 +48,6 @@ function padWithZeros(num, width = 2) {
 function terminateCurrTimer() {
     currTimer.stop();
     currTimer = null;
-}
-
-function terminateCurrDisplay() {
-    currDisplay.stop();
-    currDisplay = null;
 }
 
 function showCheckmark() {
@@ -290,7 +288,7 @@ function displayAnimation(countdown) {
 $(document).ready(() => {
 
     // status indicator: blue color means this file compiled.
-    document.querySelector('body').style.backgroundColor = 'blue';
+    // document.querySelector('body').style.backgroundColor = 'blue';
 
     // toggle mode
     document.querySelector('#toWorkout').onclick = function () {
@@ -335,8 +333,7 @@ $(document).ready(() => {
     document.querySelector('#reset').onclick = function () {
         // terminates both currTimer and currDisplay
         if (currTimer) terminateCurrTimer();
-        if (currDisplay) terminateCurrDisplay();
-        document.getElementById('loop-alarm').pause();
+        stopNotification();
 
         $('#hours').text('00');
         $('#minutes').text('00');
@@ -351,7 +348,6 @@ $(document).ready(() => {
 
     document.querySelector('#checkmark-control').onclick = function () {
         if (currTimer) terminateCurrTimer();
-        if (currDisplay) terminateCurrDisplay();
         document.getElementById('loop-alarm').pause();
 
         $('#hours').text('00');
