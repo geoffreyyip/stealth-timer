@@ -53,19 +53,19 @@ function terminateCurrDisplay() {
 }
 
 function showCheckmark() {
-    $("#checkmark-control").show();
+    document.querySelector("#checkmark-control").style.display = 'block';
 }
 
 function hideCheckmark() {
-    $("#checkmark-control").hide();
-}
-
-function hideMediaControls() {
-    $("#media-controls").hide();
+    document.querySelector("#checkmark-control").style.display = 'none';
 }
 
 function showMediaControls() {
-    $("#media-controls").show();
+    document.querySelector('#media-controls').style.display = 'block';
+}
+
+function hideMediaControls() {
+    document.querySelector('#media-controls').style.display = 'none';
 }
 
 function buildObserver(countdown) {
@@ -208,31 +208,35 @@ class AlternatingIntervals {
 // no-use-before-define
 function startNewTimer(mode) {
     let newTimer;
+
+    const hoursWork = document.querySelector('#hours-work').value;
+    const minutesWork = document.querySelector('#minutes-work').value;
+    const secondsWork = document.querySelector('#seconds-work').value;
+    const timeEntry = {
+        hours: parseInt(hoursWork, 10) || 0,
+        minutes: parseInt(minutesWork, 10) || 0,
+        seconds: parseInt(secondsWork, 10) || 0,
+    };  
+
+    const hoursBreak = document.querySelector('#hours-break').value;
+    const minutesBreak = document.querySelector('#minutes-break').value;
+    const secondsBreak = document.querySelector('#seconds-break').value;
+    const breakEntry = {
+        hours: parseInt(hoursBreak, 10) || 0,
+        minutes: parseInt(minutesBreak, 10) || 0,
+        seconds: parseInt(secondsBreak, 10) || 0,
+    };
+
     if (mode === REGULAR) {
-        const timeEntry = {
-            hours: parseInt($('#hours-work').val(), 10) || 0,
-            minutes: parseInt($('#minutes-work').val(), 10) || 0,
-            seconds: parseInt($('#seconds-work').val(), 10) || 0,
-        };
         newTimer = new CountdownTimer(timeEntry, () => {
             playNotification();
-            terminateCurrTimer();
-            showCheckmark();
             hideMediaControls();
+            showCheckmark();
+            terminateCurrTimer();
         }, buildObserver);
     } else if (mode === WORKOUT) {
-        const timeEntry = {
-            hours: parseInt($('#hours-work').val(), 10) || 0,
-            minutes: parseInt($('#minutes-work').val(), 10) || 0,
-            seconds: parseInt($('#seconds-work').val(), 10) || 0,
-        };
-        const breakEntry = {
-            hours: parseInt($('#hours-break').val(), 10) || 0,
-            minutes: parseInt($('#minutes-break').val(), 10) || 0,
-            seconds: parseInt($('#seconds-break').val(), 10) || 0,
-        };
-
-        const repetitions = parseInt($('#repetitions-entry').val(), 10);
+        const repetitions = parseInt(
+            document.querySelector('#repetitions-entry').value, 10) || 0;
         newTimer = new AlternatingIntervals(timeEntry, breakEntry, repetitions);
     }
     return newTimer;
@@ -258,9 +262,9 @@ function displayTime(countdown) {
         (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR));
 
     // update timer elements
-    $('#hours').text(padWithZeros(hours, 2));
-    $('#minutes').text(padWithZeros(minutes, 2));
-    $('#seconds').text(padWithZeros(seconds, 2));   
+    document.querySelector('#hours').textContent = padWithZeros(hours, 2);
+    document.querySelector('#minutes').textContent = padWithZeros(minutes, 2);
+    document.querySelector('#seconds').textContent = padWithZeros(seconds, 2);
 }
 
 /*
@@ -286,10 +290,10 @@ function displayAnimation(countdown) {
 $(document).ready(() => {
 
     // status indicator: blue color means this file compiled.
-    $('body').css({ 'background-color': 'blue' });
+    document.querySelector('body').style.backgroundColor = 'blue';
 
     // toggle mode
-    $('#toWorkout').on('click', () => {
+    document.querySelector('#toWorkout').onclick = function () {
         currMode = WORKOUT;
 
         $('#toRegular').show();
@@ -297,9 +301,9 @@ $(document).ready(() => {
 
         $('#repetitions').show();
         $('#break-entry').show();
-    });
+    };
 
-    $('#toRegular').on('click', () => {
+    document.querySelector('#toRegular').onclick = function () {
         currMode = REGULAR;
 
         $('#toWorkout').show();
@@ -307,9 +311,9 @@ $(document).ready(() => {
 
         $('#repetitions').hide();
         $('#break-entry').hide();
-    });
+    };
 
-    $('#play').on('click', () => {
+    document.querySelector('#play').onclick = function () {
         const timer = currTimer || startNewTimer(currMode);
         timer.play();
         currTimer = timer;
@@ -319,16 +323,16 @@ $(document).ready(() => {
 
         $('#play').hide();
         $('#pause').show();
-    });
+    };
 
-    $('#pause').on('click', () => {
+    document.querySelector('#pause').onclick = function () {
         if (currTimer) currTimer.pause();
 
         $('#play').show();
         $('#pause').hide();
-    });
+    };
 
-    $('#reset').on('click', () => {
+    document.querySelector('#reset').onclick = function () {
         // terminates both currTimer and currDisplay
         if (currTimer) terminateCurrTimer();
         if (currDisplay) terminateCurrDisplay();
@@ -343,9 +347,9 @@ $(document).ready(() => {
 
         hideCheckmark();
         showMediaControls();
-    });
+    };
 
-    $('#checkmark-control').on('click', () => {
+    document.querySelector('#checkmark-control').onclick = function () {
         if (currTimer) terminateCurrTimer();
         if (currDisplay) terminateCurrDisplay();
         document.getElementById('loop-alarm').pause();
@@ -361,19 +365,19 @@ $(document).ready(() => {
         showMediaControls();
         $('#play').show();
         $('#pause').hide();
-    });
+    };
 
-    $('#turn-stealth-on').on('click', () => {
+    document.querySelector('#turn-stealth-on').onclick = function () {
         $('#countdown-display').css("visibility", "hidden");
 
         $('#turn-stealth-off').show();
         $('#turn-stealth-on').hide();
-    });
+    };
 
-    $('#turn-stealth-off').on('click', () => {
+    document.querySelector('#turn-stealth-off').onclick = function () {
         $('#countdown-display').css("visibility", "visible");
 
         $('#turn-stealth-on').show();
         $('#turn-stealth-off').hide();
-    });
+    };
 });
