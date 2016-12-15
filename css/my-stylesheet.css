@@ -43,6 +43,7 @@ button {
 
 #countdown-display {
     display: none;
+    visibility: hidden;
 }
 
 .controls{

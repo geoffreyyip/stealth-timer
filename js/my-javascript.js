@@ -298,9 +298,9 @@ function notifyMe() {
   if (Notification.permission !== "granted")
     Notification.requestPermission();
   else {
-    var notification = new Notification('Notification title', {
-      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-      body: "Countdown's Done!",
+    var notification = new Notification('Countdown\'s Done!', {
+      icon: 'assets/checkmark.svg',
+      body: "Click here to stop alarm.",
     });
 
     notification.onclick = function () {
