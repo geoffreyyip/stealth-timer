@@ -1,6 +1,10 @@
 # stealth-timer
 
-phase 1 done! Run index.html in your local browser to see the project.
+phase 1 done!
+
+# note to self
+
+Quick feature to add: Est time 1 hour. Add a local storage object so I can total up hours spent working at end of the day. Throw it in as a callback to startNewTimer(null, doThisWhenDone, null). Record finished sessions at end of timer. https://developer.mozilla.org/en-US/docs/Web/API/Storage
 
 # purpose
 
